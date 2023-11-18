@@ -48,61 +48,6 @@ Shortcuts.Name = "Shortcuts"
 Shortcuts.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Shortcuts.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-local function MakeDraggable(object)
-	local Dragging = nil
-	local DragInput = nil
-	local DragStart = nil
-	local StartPosition = nil
-
-	local function Update(input)
-		local Delta = input.Position - DragStart
-		local pos =
-			UDim2.new(
-				StartPosition.X.Scale,
-				StartPosition.X.Offset + Delta.X,
-				StartPosition.Y.Scale,
-				StartPosition.Y.Offset + Delta.Y
-			)
-		object.Position = pos
-	end
-
-	object.InputBegan:Connect(
-		function(input)
-			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-				Dragging = true
-				DragStart = input.Position
-				StartPosition = object.Position
-
-				input.Changed:Connect(
-					function()
-						if input.UserInputState == Enum.UserInputState.End then
-							Dragging = false
-						end
-					end
-				)
-			end
-		end
-	)
-
-	object.InputChanged:Connect(
-		function(input)
-			if
-				input.UserInputType == Enum.UserInputType.MouseMovement or
-					input.UserInputType == Enum.UserInputType.Touch
-			then
-				DragInput = input
-			end
-		end
-	)
-
-	UserInputService.InputChanged:Connect(
-		function(input)
-			if input == DragInput and Dragging then
-				Update(input)
-			end
-		end
-	)
-end
 
 Frame1.Name = "Frame1"
 Frame1.Parent = Shortcuts
@@ -111,6 +56,7 @@ Frame1.BorderColor3 = Color3.new(0, 0, 0)
 Frame1.BorderSizePixel = 0
 Frame1.Position = UDim2.new(0.238820165, 0, 0.232812494, 0)
 Frame1.Size = UDim2.new(0, 469, 0, 254)
+Frame1.Draggable = true
 
 UICorner.Parent = Frame1
 
@@ -203,8 +149,6 @@ barframe.BorderColor3 = Color3.new(0, 0, 0)
 barframe.BorderSizePixel = 0
 barframe.Position = UDim2.new(0.253968269, 0, 0, 0)
 barframe.Size = UDim2.new(0, 6, 0, 230)
-
-MakeDraggable(Frame1)
 
 ScriptList.Name = "ScriptList"
 ScriptList.Parent = WindowFarm
