@@ -204,7 +204,7 @@ barframe.BorderSizePixel = 0
 barframe.Position = UDim2.new(0.253968269, 0, 0, 0)
 barframe.Size = UDim2.new(0, 6, 0, 230)
 
-MakeDraggable(barframe, WindowFarm)
+MakeDraggable(barframe, Frame1)
 
 ScriptList.Name = "ScriptList"
 ScriptList.Parent = WindowFarm
