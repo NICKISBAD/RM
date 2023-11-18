@@ -31,7 +31,9 @@ local ALegacyTime = Instance.new("TextButton")
 local UTBossBattles = Instance.new("TextButton")
 local HoursINFStats = Instance.new("TextButton")
 local HOURSallchars = Instance.new("TextButton")
+local AStereotypicalObby = Instance.new("TextButton")
 local Execute = Instance.new("TextButton")
+local ABDGame = Instance.new("TextButton")
 local UICorner_7 = Instance.new("UICorner")
 local Execute_2 = Instance.new("TextButton")
 local UICorner_8 = Instance.new("UICorner")
@@ -190,7 +192,7 @@ InfiniteYield.TextSize = 12
 InfiniteYield.TextWrapped = true
 InfiniteYield.MouseButton1Click:Connect(function()
 	_G.Script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()'
-	ScriptViewer.Text = _G.Script
+	ScriptViewer.Text = "EdgeIY - Infinite Yield"
 end)
 
 DarkDex.Name = "DarkDex"
@@ -208,7 +210,7 @@ DarkDex.TextSize = 19
 DarkDex.TextWrapped = true
 DarkDex.MouseButton1Click:Connect(function()
 	_G.Script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/BabyHamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))()'
-	ScriptViewer.Text = _G.Script
+	ScriptViewer.Text = "Dex Explorer"
 end)
 
 UIListLayout.Parent = ScriptList
@@ -230,7 +232,7 @@ ResidenceMassacre.TextSize = 19
 ResidenceMassacre.TextWrapped = true
 ResidenceMassacre.MouseButton1Click:Connect(function()
 	_G.Script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/RM/main/xscript.lua"))()'
-	ScriptViewer.Text = _G.Script
+	ScriptViewer.Text = "Residence Massacre"
 end)
 
 ALegacyTime.Name = "A Legacy Time"
@@ -248,7 +250,7 @@ ALegacyTime.TextSize = 12
 ALegacyTime.TextWrapped = true
 ALegacyTime.MouseButton1Click:Connect(function()
 	_G.Script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/RM/main/alt.lua"))()'
-	ScriptViewer.Text = _G.Script
+	ScriptViewer.Text = "A Legacy Time / Any AUT game with a bad anticheat"
 end)
 
 UTBossBattles.Name = "UT Boss Battles"
@@ -266,7 +268,7 @@ UTBossBattles.TextSize = 12
 UTBossBattles.TextWrapped = true
 UTBossBattles.MouseButton1Click:Connect(function()
 	_G.Script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/UT-BB-Docs/main/BetaV1.8.lua"))()'
-	ScriptViewer.Text = _G.Script
+	ScriptViewer.Text = "Undertale Boss Battles"
 end)
 
 HoursINFStats.Name = "Hours INF Stats"
@@ -283,7 +285,25 @@ HoursINFStats.TextSize = 12
 HoursINFStats.TextWrapped = true
 HoursINFStats.MouseButton1Click:Connect(function()
 	_G.Script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/RM/main/hours1.lua"))()'
-	ScriptViewer.Text = _G.Script
+	ScriptViewer.Text = "Hours (INF Stats all characters)"
+end)
+
+ABDGame.Name = "DarkDex"
+ABDGame.Parent = ScriptList
+ABDGame.BackgroundColor3 = Color3.new(0.0941176, 0.0941176, 0.0941176)
+ABDGame.BorderColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+ABDGame.BorderSizePixel = 2
+ABDGame.Position = UDim2.new(0, 0, 0.12608695, 0)
+ABDGame.Size = UDim2.new(0, 105, 0, 24)
+ABDGame.Font = Enum.Font.Arcade
+ABDGame.Text = "Dark Dex"
+ABDGame.TextColor3 = Color3.new(1, 1, 1)
+ABDGame.TextScaled = true
+ABDGame.TextSize = 19
+ABDGame.TextWrapped = true
+ABDGame.MouseButton1Click:Connect(function()
+	_G.Script = 'ABD Game'
+	ScriptViewer.Text = "A Bizarre Day Knockoffs"
 end)
 
 HOURSallchars.Name = "A Legacy Time"
@@ -301,7 +321,25 @@ HOURSallchars.TextSize = 12
 HOURSallchars.TextWrapped = true
 HOURSallchars.MouseButton1Click:Connect(function()
 	_G.Script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/RM/main/HOURSunlockall.lua"))()'
-	ScriptViewer.Text = _G.Script
+	ScriptViewer.Text = "Hours (All Hosts+Tempos)"
+end)
+
+AStereotypicalObby.Name = "A Legacy Time"
+AStereotypicalObby.Parent = ScriptList
+AStereotypicalObby.BackgroundColor3 = Color3.new(0.0941176, 0.0941176, 0.0941176)
+AStereotypicalObby.BorderColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+AStereotypicalObby.BorderSizePixel = 2
+AStereotypicalObby.Position = UDim2.new(0, 0, 0.378260881, 0)
+AStereotypicalObby.Size = UDim2.new(0, 105, 0, 24)
+AStereotypicalObby.Font = Enum.Font.Arcade
+AStereotypicalObby.Text = "Stereotypical Obby"
+AStereotypicalObby.TextColor3 = Color3.new(1, 1, 1)
+AStereotypicalObby.TextScaled = true
+AStereotypicalObby.TextSize = 12
+AStereotypicalObby.TextWrapped = true
+AStereotypicalObby.MouseButton1Click:Connect(function()
+	_G.Script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/A-Stereotypical-Obby/main/Main.lua"))()'
+	ScriptViewer.Text = "A stereotypical obby"
 end)
 
 Execute.Name = "Execute"
@@ -330,12 +368,22 @@ Execute.MouseButton1Click:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/RM/main/hours1.lua"))()
 	elseif _G.Script == 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/RM/main/HOURSunlockall.lua"))()' then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/RM/main/HOURSunlockall.lua"))()
+	elseif _G.Script == 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/A-Stereotypical-Obby/main/Main.lua"))()' then
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/A-Stereotypical-Obby/main/Main.lua"))()	
+	elseif _G.Script = "ABD Game" then
+		for i,v in pairs(game.Workspace:GetChildren()) do
+				if v:IsA"Tool" then
+					local a = v:WaitForChild"Handle" or v:WaitForChild"Cover"
+					a.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+				end
+			end
+		end
 	else
 		ScriptViewer.Text = "Error: No Script Entered!"
 		ScriptViewer.TextColor = Color3.fromRGB(255,0,0)
 		wait(3)
 		ScriptViewer.Text = "Scripts appear here"
-		ScriptViewer.TextColor = Color3.new(255,255,255)
+		ScriptViewer.TextColor = Color3.fromRGB(255,255,255)
 	end
 end)
 
