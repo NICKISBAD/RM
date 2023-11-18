@@ -48,7 +48,7 @@ Shortcuts.Name = "Shortcuts"
 Shortcuts.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Shortcuts.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-local function MakeDraggable(topbarobject, object)
+local function MakeDraggable(object)
 	local Dragging = nil
 	local DragInput = nil
 	local DragStart = nil
@@ -66,7 +66,7 @@ local function MakeDraggable(topbarobject, object)
 		object.Position = pos
 	end
 
-	topbarobject.InputBegan:Connect(
+	object.InputBegan:Connect(
 		function(input)
 			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 				Dragging = true
@@ -84,7 +84,7 @@ local function MakeDraggable(topbarobject, object)
 		end
 	)
 
-	topbarobject.InputChanged:Connect(
+	object.InputChanged:Connect(
 		function(input)
 			if
 				input.UserInputType == Enum.UserInputType.MouseMovement or
@@ -204,7 +204,7 @@ barframe.BorderSizePixel = 0
 barframe.Position = UDim2.new(0.253968269, 0, 0, 0)
 barframe.Size = UDim2.new(0, 6, 0, 230)
 
-MakeDraggable(barframe, Frame1)
+MakeDraggable(Frame1)
 
 ScriptList.Name = "ScriptList"
 ScriptList.Parent = WindowFarm
