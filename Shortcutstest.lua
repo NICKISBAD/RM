@@ -29,7 +29,6 @@ local UIListLayout = Instance.new("UIListLayout")
 local ResidenceMassacre = Instance.new("TextButton")
 local ALegacyTime = Instance.new("TextButton")
 local UTBossBattles = Instance.new("TextButton")
-local HoursINFStats = Instance.new("TextButton")
 local HOURSallchars = Instance.new("TextButton")
 local AStereotypicalObby = Instance.new("TextButton")
 local Execute = Instance.new("TextButton")
@@ -307,22 +306,6 @@ UTBossBattles.MouseButton1Click:Connect(function()
 	ScriptViewer.Text = "Undertale Boss Battles"
 end)
 
-HoursINFStats.Name = "Hours INF Stats"
-HoursINFStats.Parent = ScriptList
-HoursINFStats.BackgroundColor3 = Color3.new(0.0941176, 0.0941176, 0.0941176)
-HoursINFStats.BorderColor3 = Color3.new(0.156863, 0.156863, 0.156863)
-HoursINFStats.BorderSizePixel = 2
-HoursINFStats.Size = UDim2.new(0, 105, 0, 24)
-HoursINFStats.Font = Enum.Font.Arcade
-HoursINFStats.Text = "HOURS Inf Stats"
-HoursINFStats.TextColor3 = Color3.new(1, 1, 1)
-HoursINFStats.TextScaled = true
-HoursINFStats.TextSize = 12
-HoursINFStats.TextWrapped = true
-HoursINFStats.MouseButton1Click:Connect(function()
-	_G.Script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/RM/main/hours1.lua"))()'
-	ScriptViewer.Text = "Hours (INF Stats all characters)"
-end)
 
 ABDGame.Name = "DarkDex"
 ABDGame.Parent = ScriptList
@@ -418,8 +401,6 @@ Execute.MouseButton1Click:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/RM/main/alt.lua"))()
 	elseif _G.Script == 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/UT-BB-Docs/main/BetaV1.8.lua"))()' then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/UT-BB-Docs/main/BetaV1.8.lua"))()
-	elseif _G.Script == 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/RM/main/hours1.lua"))()' then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/RM/main/hours1.lua"))()
 	elseif _G.Script == 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/RM/main/HOURSunlockall.lua"))()' then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/RM/main/HOURSunlockall.lua"))()
 	elseif _G.Script == 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/A-Stereotypical-Obby/main/Main.lua"))()' then
