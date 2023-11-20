@@ -34,6 +34,7 @@ local HOURSallchars = Instance.new("TextButton")
 local AStereotypicalObby = Instance.new("TextButton")
 local Execute = Instance.new("TextButton")
 local ABDGame = Instance.new("TextButton")
+local PlayerESP = Instance.new("TextButton")
 local UICorner_7 = Instance.new("UICorner")
 local Execute_2 = Instance.new("TextButton")
 local UICorner_8 = Instance.new("UICorner")
@@ -47,7 +48,7 @@ _G.Script = nil
 -- Properties
 
 Shortcuts.Name = "Shortcuts"
-Shortcuts.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Shortcuts.Parent = game.CoreGui
 Shortcuts.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 
@@ -58,7 +59,42 @@ Frame1.BorderColor3 = Color3.new(0, 0, 0)
 Frame1.BorderSizePixel = 0
 Frame1.Position = UDim2.new(0.238820165, 0, 0.232812494, 0)
 Frame1.Size = UDim2.new(0, 469, 0, 254)
-Frame1.Draggable = true
+
+
+local UserInputService = game:GetService("UserInputService")
+
+local dragging
+local dragInput
+local dragStart
+local startPos
+
+Frame1.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = Frame1.Position
+
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+Frame1.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if input == dragInput and dragging then
+		local delta = input.Position - dragStart
+		Frame1.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+end)
+
 
 UICorner.Parent = Frame1
 
@@ -324,7 +360,7 @@ HOURSallchars.MouseButton1Click:Connect(function()
 	ScriptViewer.Text = "Hours (All Hosts+Tempos)"
 end)
 
-AStereotypicalObby.Name = "A Legacy Time"
+AStereotypicalObby.Name = "A Stereotypical Obby"
 AStereotypicalObby.Parent = ScriptList
 AStereotypicalObby.BackgroundColor3 = Color3.new(0.0941176, 0.0941176, 0.0941176)
 AStereotypicalObby.BorderColor3 = Color3.new(0.156863, 0.156863, 0.156863)
@@ -340,6 +376,24 @@ AStereotypicalObby.TextWrapped = true
 AStereotypicalObby.MouseButton1Click:Connect(function()
 	_G.Script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/A-Stereotypical-Obby/main/Main.lua"))()'
 	ScriptViewer.Text = "A stereotypical obby"
+end)
+
+PlayerESP.Name = "Player ESP"
+PlayerESP.Parent = ScriptList
+PlayerESP.BackgroundColor3 = Color3.new(0.0941176, 0.0941176, 0.0941176)
+PlayerESP.BorderColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+PlayerESP.BorderSizePixel = 2
+PlayerESP.Position = UDim2.new(0, 0, 0.378260881, 0)
+PlayerESP.Size = UDim2.new(0, 105, 0, 24)
+PlayerESP.Font = Enum.Font.Arcade
+PlayerESP.Text = "PlayerESP"
+PlayerESP.TextColor3 = Color3.new(1, 1, 1)
+PlayerESP.TextScaled = true
+PlayerESP.TextSize = 12
+PlayerESP.TextWrapped = true
+PlayerESP.MouseButton1Click:Connect(function()
+	_G.Script = 'PlayerESP'
+	ScriptViewer.Text = "Player ESP"
 end)
 
 Execute.Name = "Execute"
@@ -370,12 +424,36 @@ Execute.MouseButton1Click:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/RM/main/HOURSunlockall.lua"))()
 	elseif _G.Script == 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/A-Stereotypical-Obby/main/Main.lua"))()' then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/NICKISBAD/A-Stereotypical-Obby/main/Main.lua"))()	
-	elseif _G.Script = "ABD Game" then
+	elseif _G.Script == "ABD Game" then
 		for i,v in pairs(game.Workspace:GetChildren()) do
 				if v:IsA"Tool" then
 					local a = v:WaitForChild"Handle" or v:WaitForChild"Cover"
 					a.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-				end
+			end
+		end
+	elseif _G.Script == "PlayerESP" then
+		for i,v in pairs(game.Players:GetChildren()) do
+			if v:IsA("Player") and v.Name ~= game.Players.LocalPlayer.Name then
+				local bi = Instance.new("BillboardGui", v.Character.HumanoidRootPart)
+				bi.Name = "ESP"
+				bi.StudsOffset = Vector3.new(0, v.Character.HumanoidRootPart.Size.Y + 6, 0)
+                bi.Adornee = v.Character.HumanoidRootPart
+                bi.AlwaysOnTop = true
+                bi.Size = UDim2.new(0, 200, 0, 50)
+                
+                local esplabelfr = Instance.new("TextLabel")
+                esplabelfr.Name = "esplabelfr"
+                esplabelfr.Text = v.Name
+                esplabelfr.Size = UDim2.new(1, 0, 0, 70)
+                esplabelfr.BackgroundColor3 = Color3.new(0, 0, 0)
+                esplabelfr.TextColor3 = TextColor or Color3.fromRGB(255, 255, 255)
+                esplabelfr.BackgroundTransparency = 1
+                esplabelfr.TextStrokeTransparency = 0
+                esplabelfr.TextStrokeColor3 = Color3.new(0, 0, 0)
+                esplabelfr.TextSize = 12
+                esplabelfr.TextScaled = false
+                esplabelfr.Font = "Arcade"
+                esplabelfr.Parent = bi
 			end
 		end
 	else
@@ -402,6 +480,9 @@ Execute_2.TextColor3 = Color3.new(1, 1, 1)
 Execute_2.TextSize = 14
 Execute_2.MouseButton1Click:Connect(function()
 	setclipboard(_G.Script)
+	ScriptViewer.Text = "Script Copied"
+	wait(5)
+	ScriptViewer.Text = "Current Script: Nil"
 end)
 
 UICorner_8.Parent = Execute_2
