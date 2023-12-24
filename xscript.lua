@@ -1,6 +1,3 @@
---[[
-	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
-]]
 local ESPLib = {}
 
 function ESPLib:CreateESPTag(params)
@@ -239,6 +236,7 @@ Tab:AddButton({
 
 _G.InfStam = false
 _G.InfO2 = false
+_G.AntiFreeze = false
 
 Tab:AddToggle({
     Name = "Infinite Stam",
@@ -256,6 +254,26 @@ Tab:AddToggle({
         _G.InfO2 = v
     end
 })
+
+Tab:AddToggle({
+    Name = "Anti Freezing (Christmas 2023 event)",
+    Default = false,
+    Callback = function(v)
+		_G.AntiFreeze = v
+	end
+})
+
+spawn(function()
+		while wait() do
+			if _G.AntiFreeze then
+				game.Players.LocalPlayer.Character.Temperature.Disabled = true
+			elseif not _G.AntiFreeze then
+				game.Players.LocalPlayer.Character.Temperature.Disabled = false
+     end
+	end
+end)
+				
+
 
 spawn(function()
     while wait() do
