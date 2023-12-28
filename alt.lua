@@ -16,7 +16,7 @@ function ESPLib:CreateESPTag(params)
     local esp = Instance.new("BillboardGui")
     esp.Name = "esp"
     esp.Size = UDim2.new(0, 200, 0, 50)
-    esp.StudsOffset = Vector3.new(0, 1.5, 0) -- Offset to raise the label slightly
+    esp.StudsOffset = Vector3.new(0, 1.5, 0)
     esp.Adornee = Part
     esp.Parent = Part
     esp.AlwaysOnTop = true
@@ -25,7 +25,7 @@ function ESPLib:CreateESPTag(params)
     esplabelfr.Name = "esplabelfr"
     esplabelfr.Size = UDim2.new(1, 0, 0, 70)
     esplabelfr.BackgroundColor3 = Color3.new(0, 0, 0)
-    esplabelfr.TextColor3 = TextColor or Color3.fromRGB(255, 255, 255) -- Use provided color or default white
+    esplabelfr.TextColor3 = TextColor or Color3.fromRGB(255, 255, 255)
     esplabelfr.BackgroundTransparency = 1
     esplabelfr.TextStrokeTransparency = 0
     esplabelfr.TextStrokeColor3 = Color3.new(0, 0, 0)
@@ -525,7 +525,7 @@ Tab4:AddButton({
 		local Meteor = game.Workspace:WaitForChild("!Meteorite")
 		
 		if Meteor then
-			MeteorCount + 1
+			MeteorCount = MeteorCount + 1
 			game.StarterGui("SendNotification",{
 				Title = "Meteor "..MeteorCount.. " spawned",
 				Text = "Find the meteor!!",
