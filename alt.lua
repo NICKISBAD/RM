@@ -510,7 +510,7 @@ Tab4:AddButton({
 		ESPLib:CreateESPTag({
     		Text = "Meteor",
     		Part = game:GetService("Workspace"):WaitForChild("!Meteorite").HumanoidRootPart,
-    		TextSize 15,
+    		TextSize = 15,
     		TextColor = Color3.new(255, 0, 0),
     		BoxColor = Color3.fromRGB(218, 112, 214)
 		})
