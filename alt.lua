@@ -527,7 +527,7 @@ Tab4:AddButton({
 		if Meteor then
 			MeteorCount = MeteorCount + 1
 			game.StarterGui:SetCore("SendNotification",{
-				Title = "Meteor "..MeteorCount.. " spawned",
+				Title = "Meteor spawned",
 				Text = "Find the meteor!!",
 				Duration = 10
 			})
