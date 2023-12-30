@@ -16,7 +16,7 @@ function ESPLib:CreateESPTag(params)
     local esp = Instance.new("BillboardGui")
     esp.Name = "esp"
     esp.Size = UDim2.new(0, 200, 0, 50)
-    esp.StudsOffset = Vector3.new(0, 1.5, 0) -- Offset to raise the label slightly
+    esp.StudsOffset = Vector3.new(0, 1, 0) -- Offset to raise the label slightly
     esp.Adornee = Part
     esp.Parent = Part
     esp.AlwaysOnTop = true
@@ -32,6 +32,7 @@ function ESPLib:CreateESPTag(params)
     esplabelfr.TextSize = TextSize
     esplabelfr.TextScaled = false
     esplabelfr.Parent = esp
+    esplabelfr.Font = Enum.Font.Arcade
 
     local box = Instance.new("BoxHandleAdornment")
     box.Name = "box"
@@ -472,7 +473,7 @@ local Tab4 = Window:MakeTab({
     PremiumOnly = false
 })
 
-wait(1)
+wait(0.1)
 
 local function createItemButton2(item, spawnTime)
     Tab4:AddButton({
@@ -507,13 +508,21 @@ local Tab4 = Window:MakeTab({Name = "PLANET//SHAPER", Icon = "rbxassetid://44833
 Tab4:AddButton({
 	Name = "Meteor ESP",
 	Callback = function()
-		ESPLib:CreateESPTag({
-    		Text = "Meteor",
-    		Part = game:GetService("Workspace"):WaitForChild("!Meteorite").HumanoidRootPart,
-    		TextSize = 15,
-    		TextColor = Color3.new(255, 0, 0),
-    		BoxColor = Color3.fromRGB(218, 112, 214)
-		})
+		spawn(function()
+			while wait() do
+				for i,v in pairs(game.Workspace:GetChildren()) do
+					if v.Name == "!Meteorite" then
+						ESPLib:CreateESPTag({
+							Text = "Meteor",
+							Part = v:WaitForChild("HumanoidRootPart"),
+							TextSize = 15,
+							TextColor = Color3.new(255, 255, 255),
+							BoxColor = Color3.fromRGB(218, 112, 214)
+						})
+					end
+				end
+			end
+		end)
 	end
 })
 
@@ -522,15 +531,132 @@ local MeteorCount = 0
 Tab4:AddButton({
 	Name = "Meteor Notifier",
 	Callback = function()
-		local Meteor = game.Workspace:WaitForChild("!Meteorite")
-		
-		if Meteor then
-			MeteorCount = MeteorCount + 1
-			game.StarterGui:SetCore("SendNotification",{
-				Title = "Meteor spawned",
-				Text = "Find the meteor!!",
-				Duration = 10
-			})
-		end
+		spawn(function()
+			while wait() do
+				for i,v in pairs(game.Workspace:GetChildren()) do
+					if v.Name == "!Meteorite" then
+						MeteorCount = MeteorCount + 1
+						game.StarterGui:SetCore("SendNotification",{
+							Title = "Meteor spawned",
+							Text = "Find the meteor!!",
+							Duration = 10
+						})
+					end
+				end
+			end
+		end)
 	end
 })
+
+local Tab9 = Window:MakeTab({Name = "BlackMarket", Icon = "rbxassetid://4483345998", PremiumOnly = false })
+
+Tab9:AddLabel("Sell Items")
+
+local function SellItem(itemName)
+	game:GetService("ReplicatedStorage").newremotes.SellItem:FireServer(itemName)
+end
+
+local SA = false
+local RF = false
+local RA = false
+local DD = false
+local GF = false
+local HD = false
+
+Tab9:AddToggle({
+	Name = "Arrow",
+	Default = false,
+	Callback = function(v)
+		SA = v
+	end
+})
+
+Tab9:AddToggle({
+	Name = "Rokakaka Fruit",
+	Default = false,
+	Callback = function(v)
+		RF = v
+	end
+})
+
+Tab9:AddToggle({
+	Name = "Requiem Arrow",
+	Default = false,
+	Callback = function(v)
+		RA = v
+	end
+})
+
+Tab9:AddToggle({
+	Name = "DIO's Diary",
+	Default = false,
+	Callback = function(v)
+		DD = v
+	end
+})
+
+Tab9:AddToggle({
+	Name = "Gift From The Gods",
+	Default = false,
+	Callback = function(v)
+		GF = v
+	end
+})
+
+Tab9:AddToggle({
+	Name = "Holy Diary",
+	Default = false,
+	Callback = function(v)
+		HD = v
+	end
+})
+
+spawn(function()
+	while wait() do
+		if SA then
+			SellItem("Arrow")
+		end
+	end
+end)
+
+spawn(function()
+	while wait() do
+		if RF then
+			SellItem("Rokakaka Fruit")
+		end
+	end
+end)
+
+spawn(function()
+	while wait() do
+		if RA then
+			SellItem("Requiem Arrow")
+		end
+	end
+end)
+
+spawn(function()
+	while wait() do
+		if DD then
+			SellItem("DIO's Diary")
+		end
+	end
+end)
+
+spawn(function()
+	while wait() do
+		if GF then
+			SellItem("Gift From The Gods")
+		end
+	end
+end)
+
+spawn(function()
+	while wait() do
+		if HD then
+			SellItem("Holy Diary")
+		end
+	end
+end)
+
+
