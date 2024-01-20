@@ -258,6 +258,9 @@ spawn(function()
 	while wait() do
 		if _G.InfO2 then
 			game.Players.LocalPlayer.Character.Breath.Value = 20
+		elseif not _G.InfO2 then
+			game.Players.LocalPlayer.Character.Breath.Value = 20
+			return end
 		end
 	end
 end)
@@ -266,6 +269,9 @@ spawn(function()
 	while wait() do
 		if _G.InfStam then
 			game.Players.LocalPlayer.Character.Sprint.Overdrive.Value = 9999
+		elseif not _G.InfStam then
+			game.Players.LocalPlayer.Character.Sprint.Overdrive.Value = 100
+			return end
 		end
 	end
 end)
