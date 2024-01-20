@@ -328,3 +328,68 @@ end)
 b("TP to power console", function()
 	tp(CFrame.new(-2.41564226, 6.19921589, -92.5593948, -0.98161006, 0.000280018401, -0.190896764, -1.27568831e-06, 0.999998927, 0.00147344405, 0.190896958, 0.00144659204, -0.981608987))
 end)
+
+local mn = Window:MakeTab({
+	Name = "Monster Gamemode",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local InfBlood = false
+
+mn:AddToggle({
+	Name = "Infinite Blood",
+	Default = false,
+	Callback = function(v)
+		InfBlood = v
+	end
+})
+
+spawn(function()
+	game.RunService.RenderStepped:Connect(function()
+		if InfBlood then
+			task.wait()
+			game.Players.LocalPlayer.Character:WaitForChild("Blood").Value = 999998927
+		end
+	end)
+end)
+
+mn:AddButton({
+	Name = "Large Hitbox",
+	Callback = function()
+		for i,v in pairs(game.Players:GetChildren()) do
+			if v:IsA("Player") and v.Name ~= game.Players.LocalPlayer.Name then
+				v.Character.HumanoidRootPart.Size = Vector3.new(100,100,100)
+			end
+		end
+	end
+})
+
+local misc = Window:MakeTab({
+	Name = "Misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local itemgrab = false
+
+misc:AddToggle({
+	Name = "GrabItem Aura",
+	Default = false,
+	Callback = function(v)
+		itemgrab = v
+	end
+})
+
+spawn(function()
+	game.RunService.RenderStepped:Connect(function()
+		if itemgrab then
+			task.wait(.5)
+			for i,v in pairs(game.Workspace:GetDescendants()) do
+				if v:IsA("Tool") or table.find({"Flashlight", "FlashLight", "Battery"}, v.Name) then
+					fireclickdetector(v:FindFirstChild("ClickDetector"))
+				end
+			end
+		end
+	end)
+end)
