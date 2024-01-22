@@ -259,8 +259,7 @@ spawn(function()
 		if _G.InfO2 then
 			game.Players.LocalPlayer.Character.Breath.Value = 20
 		elseif not _G.InfO2 then
-			game.Players.LocalPlayer.Character.Breath.Value = 20
-			return end
+			
 		end
 	end
 end)
@@ -270,8 +269,7 @@ spawn(function()
 		if _G.InfStam then
 			game.Players.LocalPlayer.Character.Sprint.Overdrive.Value = 9999
 		elseif not _G.InfStam then
-			game.Players.LocalPlayer.Character.Sprint.Overdrive.Value = 100
-			return end
+			
 		end
 	end
 end)
@@ -369,7 +367,7 @@ misc:AddToggle({
 spawn(function()
 	game.RunService.RenderStepped:Connect(function()
 		if itemgrab then
-			task.wait(.5)
+			task.wait(1)
 			for i,v in pairs(game.Workspace:GetDescendants()) do
 				if v:IsA("Tool") or table.find({"Flashlight", "FlashLight", "Battery"}, v.Name) then
 					fireclickdetector(v:FindFirstChild("ClickDetector"))
@@ -378,3 +376,154 @@ spawn(function()
 		end
 	end)
 end)
+
+local plr = Window:MakeTab({
+	Name = "Players",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local players = {}
+
+local playersDropdown = plr:AddDropdown({
+	Name = "Players",
+	Default = "PlayerName",
+	Options = players,
+	Callback = function(selectedPlayer)
+		targ = selectedPlayer
+	end
+})
+
+function UpdatePlayersTable()
+	players = {}
+	for _, player in pairs(game.Players:GetPlayers()) do
+		if player ~= game.Players.LocalPlayer then
+			table.insert(players, player.Name)
+		end
+	end
+
+	playersDropdown:Refresh(players, true)
+end
+
+spawn(function()
+	while wait(0.5) do
+		UpdatePlayersTable()
+	end
+end)
+
+plr:AddButton({
+	Name = "TP to Player",
+	Callback = function()
+		if targ == nil or targ == "" or targ == " " then
+			game.StarterGui:SetCore("SendNotification", {
+				Title = "Player is nil!",
+				Text = "Target not selected",
+				Duration = 5
+			})
+		else
+			game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(game.Players[targ].Character.PrimaryPart.CFrame)
+		end
+	end
+})
+
+plr:AddButton({
+	Name = "ESP to Player",
+	Callback = function()
+		if targ == nil or targ == "" or targ == " " then
+			game.StarterGui:SetCore("SendNotification", {
+				Title = "Player is nil!",
+				Text = "Target not selected",
+				Duration = 5
+			})
+		else
+			local bi = Instance.new("BillboardGui", game.Players[targ].Character.HumanoidRootPart)
+			bi.Name = "ESP"
+			bi.StudsOffset = Vector3.new(0, game.Players[targ].Character.HumanoidRootPart.Size.Y + 6, 0)
+			bi.Adornee = game.Players[targ].Character.HumanoidRootPart
+			bi.AlwaysOnTop = true
+			bi.Size = UDim2.new(0, 200, 0, 50)
+
+			local esplabelfr = Instance.new("TextLabel")
+			esplabelfr.Name = "esplabelfr"
+			esplabelfr.Text = targ
+			esplabelfr.Size = UDim2.new(1, 0, 0, 70)
+			esplabelfr.BackgroundColor3 = Color3.new(0, 0, 0)
+			esplabelfr.TextColor3 = TextColor or Color3.fromRGB(255, 255, 255)
+			esplabelfr.BackgroundTransparency = 1
+			esplabelfr.TextStrokeTransparency = 0
+			esplabelfr.TextStrokeColor3 = Color3.new(0, 0, 0)
+			esplabelfr.TextSize = 12
+			esplabelfr.TextScaled = false
+			esplabelfr.Font = "Arcade"
+			esplabelfr.Parent = bi
+		end
+	end
+})
+
+plr:AddButton({
+    Name = "Tween to Player",
+    Callback = function()
+        if targ == nil or targ == "" or targ == " " then
+            game.StarterGui:SetCore("SendNotification", {
+                Title = "Player is nil!",
+                Text = "Target not selected",
+                Duration = 5
+            })
+        else
+            local ts = game:GetService("TweenService")
+            
+            local humanoidRootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+            local targetHumanoidRootPart = game.Players[targ].Character.HumanoidRootPart
+
+            local tweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
+
+            local propertyGoals = {
+                CFrame = targetHumanoidRootPart.CFrame
+            }
+
+            local tween = ts:Create(humanoidRootPart, tweenInfo, propertyGoals)
+            tween:Play()
+        end
+    end
+})
+
+local cbring = false
+
+plr:AddToggle({
+	Name = "Client-Bring Player",
+	Default = false,
+	Callback = function(v)
+		cbring = v
+		
+		if targ == nil or targ == "" or targ == " " then
+			game.StarterGui:SetCore("SendNotification", {
+				Title = "Player is nil!",
+				Text = "Target not selected",
+				Duration = 5
+			})
+		else
+			while task.wait(.1) do
+				if cbring then
+					game.Players[targ].Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.PrimaryPart.CFrame
+				end
+			end
+		end
+	end
+})
+
+plr:AddButton({
+	Name = "Increase Player Hitbox",
+	Callback = function()
+		if targ == nil or targ == "" or targ == " " then
+			game.StarterGui:SetCore("SendNotification", {
+				Title = "Player is nil!",
+				Text = "Target not selected",
+				Duration = 5
+			})
+		else
+			while task.wait(.1) do
+				game.Players[targ].Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.PrimaryPart.CFrame
+			end
+		end
+	end
+})
